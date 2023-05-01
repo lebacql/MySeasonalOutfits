@@ -2,28 +2,27 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\UserAnswer;
+use App\Entity\Answer;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class UserAnswerCrudController extends AbstractCrudController
+class AnswerCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return UserAnswer::class;
+        return Answer::class;
     }
 
-
+    
     public function configureFields(string $pageName): iterable
     {
         return [
             IdField::new('id')->hideOnForm(),
-            // AssociationField::new('user'),
-            // AssociationField::new('outfit'),
-            AssociationField::new('answer', 'Réponse'),
-
+            TextField::new('answer'),
+            AssociationField::new('question'),
         ];
     }
-   
+    
 }

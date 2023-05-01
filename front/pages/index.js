@@ -1,35 +1,16 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+import React from "react";
+import { BrowserRouter } from "react-router-dom"
+import App from "./_app";
+import { ReactDOM } from "react-dom/client";
 
-function Articles() {
-  const [articles, showArticles] = useState([]);
-
-  useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/articles')
-      .then(response => {
-        console.log(response.data);
-        showArticles(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, [])
-
-  return (
-    <div>
-      <h2>Liste des articles</h2>
-      <ul>
-        {articles.map((article) => (
-          <li key={article.id}>
-            <h3>{article.Title}</h3>
-            <img src={article.image}/>
-            <p>{article.Content}</p>
-            <p>{article.Date}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+// check if the document object is defined
+if (typeof document !== "undefined") {
+  const root = ReactDOM.createRoot(document.getElementById("root"))
+  root.render(
+    <React.StrictMode>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </React.StrictMode>
+  )
 }
-
-export default Articles;

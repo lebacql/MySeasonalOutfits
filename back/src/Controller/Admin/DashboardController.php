@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Answer;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -59,6 +60,12 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::subMenu('Actions', 'fa fa-pickaxe')->setSubItems([
             MenuItem::linkToCrud('Ajouter Question', 'fa fa-plus', Question::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Questions', 'fa fa-eye', Question::class)
+        ]);
+
+        yield MenuItem::section('Réponses', 'fa fa-question');
+        yield MenuItem::subMenu('Actions', 'fa fa-pickaxe')->setSubItems([
+            MenuItem::linkToCrud('Ajouter Réponse', 'fa fa-plus', Answer::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Réponses', 'fa fa-eye', Answer::class)
         ]);
 
         yield MenuItem::section('Réponses Utilisateurs', 'fa fa-user-pen');

@@ -15,9 +15,6 @@ class Outfit
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToMany(targetEntity: userAnswer::class)]
-    private Collection $userAnswer;
-
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
@@ -69,6 +66,9 @@ class Outfit
     #[ORM\Column(length: 255)]
     private ?string $accessoriesLink = null;
 
+    #[ORM\ManyToMany(targetEntity: UserAnswer::class, inversedBy: 'outfits')]
+    private Collection $userAnswer;
+
     public function __construct()
     {
         $this->userAnswer = new ArrayCollection();
@@ -79,29 +79,6 @@ class Outfit
         return $this->id;
     }
 
-    /**
-     * @return Collection<int, userAnswer>
-     */
-    public function getUserAnswer(): Collection
-    {
-        return $this->userAnswer;
-    }
-
-    public function addUserAnswer(userAnswer $userAnswer): self
-    {
-        if (!$this->userAnswer->contains($userAnswer)) {
-            $this->userAnswer->add($userAnswer);
-        }
-
-        return $this;
-    }
-
-    public function removeUserAnswer(userAnswer $userAnswer): self
-    {
-        $this->userAnswer->removeElement($userAnswer);
-
-        return $this;
-    }
 
     public function getTitle(): ?string
     {
@@ -306,4 +283,30 @@ class Outfit
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, UserAnswer>
+     */
+    public function getUserAnswer(): Collection
+    {
+        return $this->userAnswer;
+    }
+
+    public function addUserAnswer(UserAnswer $userAnswer): self
+    {
+        if (!$this->userAnswer->contains($userAnswer)) {
+            $this->userAnswer->add($userAnswer);
+        }
+
+        return $this;
+    }
+
+    public function removeUserAnswer(UserAnswer $userAnswer): self
+    {
+        $this->userAnswer->removeElement($userAnswer);
+
+        return $this;
+    }
+
+
 }

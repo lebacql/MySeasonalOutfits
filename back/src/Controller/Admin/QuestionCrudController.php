@@ -30,10 +30,6 @@ class QuestionCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('question', 'Question'),
-            TextField::new('answerA', 'Réponse A'),
-            TextField::new('answerB', 'Réponse B'),
-            TextField::new('answerC', 'Réponse C'),
-            TextField::new('answerD', 'Réponse D'),
             AssociationField::new('quiz'),
         ];
     }
