@@ -1,6 +1,6 @@
 import '@/styles/globals.css'
 import axios from './axios';
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Home } from './home';
 
 function App() {
@@ -15,9 +15,11 @@ function App() {
     });
 
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-    </Routes>
+    <BrowserRouter>
+    <Switch>
+      <Route exact={true} path={'/'} component={<Home />} />
+    </Switch>
+    </BrowserRouter>
   );
 }
 
