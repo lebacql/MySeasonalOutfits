@@ -21,7 +21,7 @@ class OutfitCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            AssociationField::new('userAnswer'),
+            AssociationField::new('answer'),
             TextField::new('Title', 'Titre'),
             // TOP
             ImageField::new('topImg', 'Image du haut')

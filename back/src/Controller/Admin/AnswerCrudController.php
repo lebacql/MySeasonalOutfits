@@ -22,6 +22,8 @@ class AnswerCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('answer'),
             AssociationField::new('question'),
+            AssociationField::new('outfits'),
+
         ];
     }
     

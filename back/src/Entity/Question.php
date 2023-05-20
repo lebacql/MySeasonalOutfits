@@ -40,7 +40,7 @@ class Question
         return $this;
     }
 
-    public function getQuiz(): ?Quiz
+    public function getQuiz(): ?quiz
     {
         return $this->quiz;
     }

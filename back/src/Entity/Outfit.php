@@ -66,13 +66,14 @@ class Outfit
     #[ORM\Column(length: 255)]
     private ?string $accessoriesLink = null;
 
-    #[ORM\ManyToMany(targetEntity: UserAnswer::class, inversedBy: 'outfits')]
-    private Collection $userAnswer;
+    #[ORM\ManyToMany(targetEntity: Answer::class, inversedBy: 'outfits')]
+    private Collection $answer;
 
     public function __construct()
     {
-        $this->userAnswer = new ArrayCollection();
+        $this->answer = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -285,25 +286,25 @@ class Outfit
     }
 
     /**
-     * @return Collection<int, UserAnswer>
+     * @return Collection<int, Answer>
      */
-    public function getUserAnswer(): Collection
+    public function getAnswer(): Collection
     {
-        return $this->userAnswer;
+        return $this->answer;
     }
 
-    public function addUserAnswer(UserAnswer $userAnswer): self
+    public function addAnswer(Answer $answer): self
     {
-        if (!$this->userAnswer->contains($userAnswer)) {
-            $this->userAnswer->add($userAnswer);
+        if (!$this->answer->contains($answer)) {
+            $this->answer->add($answer);
         }
 
         return $this;
     }
 
-    public function removeUserAnswer(UserAnswer $userAnswer): self
+    public function removeAnswer(Answer $answer): self
     {
-        $this->userAnswer->removeElement($userAnswer);
+        $this->answer->removeElement($answer);
 
         return $this;
     }

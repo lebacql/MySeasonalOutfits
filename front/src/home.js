@@ -22,7 +22,7 @@ function Articles() {
         {articles.map((article) => (
           <li key={article.id}>
             <h3>{article.Title}</h3>
-            <img src={article.image}/>
+            <img src={`http://127.0.0.1:8000/upload/images/articles/${article.image}`}/>
             <p>{article.Content}</p>
             <p>{article.Date}</p>
           </li>

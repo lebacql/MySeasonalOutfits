@@ -25,9 +25,13 @@ class Answer
     #[ORM\ManyToMany(targetEntity: UserAnswer::class, inversedBy: 'answers')]
     private Collection $userAnswer;
 
+    #[ORM\ManyToMany(targetEntity: Outfit::class, mappedBy: 'answer')]
+    private Collection $outfits;
+
     public function __construct()
     {
         $this->userAnswer = new ArrayCollection();
+        $this->outfits = new ArrayCollection();
     }
 
 
@@ -80,6 +84,33 @@ class Answer
     public function removeUserAnswer(UserAnswer $userAnswer): self
     {
         $this->userAnswer->removeElement($userAnswer);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Outfit>
+     */
+    public function getOutfits(): Collection
+    {
+        return $this->outfits;
+    }
+
+    public function addOutfit(Outfit $outfit): self
+    {
+        if (!$this->outfits->contains($outfit)) {
+            $this->outfits->add($outfit);
+            $outfit->addAnswer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOutfit(Outfit $outfit): self
+    {
+        if ($this->outfits->removeElement($outfit)) {
+            $outfit->removeAnswer($this);
+        }
 
         return $this;
     }
