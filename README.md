@@ -1,3 +1,16 @@
+/* READ ME */
+
+# Back
+    cd back
+    composer i / update
+    symfony serve
+
+# Front
+    cd front
+    npm i / update
+    npm start
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

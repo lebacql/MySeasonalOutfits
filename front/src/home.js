@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import instance from './axios';
+import axios from './axios';
 
 function Articles() {
   const [articles, showArticles] = useState([]);
 
   useEffect(() => {
-    instance.get('/articles')
+    axios.get('/articles')
       .then(response => {
         console.log(response.data);
         showArticles(response.data);
@@ -21,14 +21,16 @@ function Articles() {
       <ul>
         {articles.map((article) => (
           <li key={article.id}>
-            <h3>{article.Title}</h3>
-            <img src={`http://127.0.0.1:8000/upload/images/articles/${article.image}`}/>
-            <p>{article.Content}</p>
-            <p>{article.Date}</p>
+            <h3>{article.title}</h3>
+            <img src={`http://127.0.0.1:8000/upload/images/articles/${article.image}`} alt={article.title}/>
+            <p>{article.content}</p>
+            <p>{article.date}</p>
           </li>
         ))}
       </ul>
     </div>
+
+
   );
 }
 

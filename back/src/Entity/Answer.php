@@ -22,18 +22,13 @@ class Answer
     #[ORM\JoinColumn(nullable: false)]
     private ?Question $question = null;
 
-    #[ORM\ManyToMany(targetEntity: UserAnswer::class, inversedBy: 'answers')]
-    private Collection $userAnswer;
-
-    #[ORM\ManyToMany(targetEntity: Outfit::class, mappedBy: 'answer')]
-    private Collection $outfits;
+    #[ORM\ManyToMany(targetEntity: Proposal::class, mappedBy: 'answer')]
+    private Collection $proposals;
 
     public function __construct()
     {
-        $this->userAnswer = new ArrayCollection();
-        $this->outfits = new ArrayCollection();
+        $this->proposals = new ArrayCollection();
     }
-
 
     public function getId(): ?int
     {
@@ -64,52 +59,33 @@ class Answer
         return $this;
     }
 
-    /**
-     * @return Collection<int, UserAnswer>
-     */
-    public function getUserAnswer(): Collection
+    public function __toString()
     {
-        return $this->userAnswer;
+        return $this->answer;
     }
 
-    public function addUserAnswer(UserAnswer $userAnswer): self
+    /**
+     * @return Collection<int, Proposal>
+     */
+    public function getProposals(): Collection
     {
-        if (!$this->userAnswer->contains($userAnswer)) {
-            $this->userAnswer->add($userAnswer);
+        return $this->proposals;
+    }
+
+    public function addProposal(Proposal $proposal): self
+    {
+        if (!$this->proposals->contains($proposal)) {
+            $this->proposals->add($proposal);
+            $proposal->addAnswer($this);
         }
 
         return $this;
     }
 
-    public function removeUserAnswer(UserAnswer $userAnswer): self
+    public function removeProposal(Proposal $proposal): self
     {
-        $this->userAnswer->removeElement($userAnswer);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Outfit>
-     */
-    public function getOutfits(): Collection
-    {
-        return $this->outfits;
-    }
-
-    public function addOutfit(Outfit $outfit): self
-    {
-        if (!$this->outfits->contains($outfit)) {
-            $this->outfits->add($outfit);
-            $outfit->addAnswer($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOutfit(Outfit $outfit): self
-    {
-        if ($this->outfits->removeElement($outfit)) {
-            $outfit->removeAnswer($this);
+        if ($this->proposals->removeElement($proposal)) {
+            $proposal->removeAnswer($this);
         }
 
         return $this;

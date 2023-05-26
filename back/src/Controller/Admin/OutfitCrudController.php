@@ -21,7 +21,6 @@ class OutfitCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            AssociationField::new('answer'),
             TextField::new('Title', 'Titre'),
             // TOP
             ImageField::new('topImg', 'Image du haut')
@@ -48,12 +47,12 @@ class OutfitCrudController extends AbstractCrudController
             TextField::new('shoesLink', 'Lien des chaussures'),
 
             //ACCESSORIES
-            ImageField::new('accessoriesImg', "Image de l'accesoire")
+            ImageField::new('accessoriesImg', "Image de l'accessoire")
             ->setBasePath('/upload/images/outfits/accessories')
             ->setUploadDir('/public/upload/images/outfits/accessories'),
-            TextField::new('accessoriesBrand', "Marque de l'accesoire"),
-            MoneyField::new('accessoriesPrice', "Prix de l'accesoire")->setCurrency('EUR'),
-            TextField::new('accessoriesLink', "Lien de l'accesoire"),
+            TextField::new('accessoriesBrand', "Marque de l'accessoire"),
+            MoneyField::new('accessoriesPrice', "Prix de l'accessoire")->setCurrency('EUR'),
+            TextField::new('accessoriesLink', "Lien de l'accessoire"),
         ];
     }
 }

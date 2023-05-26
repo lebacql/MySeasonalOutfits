@@ -1,10 +1,12 @@
-import axios from 'axios';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from './home';
-import instance from './axios'
+import Quiz from './quiz';
+import Question from './question';
+import Login from './login';
+import axios from './axios'
 
 function App() {
-  instance.get('/endpoint')
+  axios.get('/endpoint')
     .then(response => {
       // Traiter la réponse de l'API
       console.log(response.data);
@@ -17,6 +19,9 @@ function App() {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
+      <Route path='/quiz' element={<Quiz />} />
+      <Route path='/questions' element={<Question />} />
+      <Route path='/connexion' element={<Login />} />
     </Routes>
   );
 }

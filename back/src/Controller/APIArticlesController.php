@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Article;
 
-class APIController extends AbstractController
+class APIArticlesController extends AbstractController
 {
     
     #[Route('/api/articles', name: 'api_articles', methods: ['GET'])]

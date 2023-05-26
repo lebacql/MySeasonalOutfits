@@ -15,13 +15,13 @@ class Article
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Title = null;
+    private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $Content = null;
+    private ?string $content = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $Date = null;
+    private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(length: 255)]
     private ?string $image = null;
@@ -33,36 +33,36 @@ class Article
 
     public function getTitle(): ?string
     {
-        return $this->Title;
+        return $this->title;
     }
 
-    public function setTitle(string $Title): self
+    public function setTitle(string $title): self
     {
-        $this->Title = $Title;
+        $this->title = $title;
 
         return $this;
     }
 
     public function getContent(): ?string
     {
-        return $this->Content;
+        return $this->content;
     }
 
-    public function setContent(string $Content): self
+    public function setContent(string $content): self
     {
-        $this->Content = $Content;
+        $this->content = $content;
 
         return $this;
     }
 
     public function getDate(): ?\DateTimeInterface
     {
-        return $this->Date;
+        return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $Date): self
+    public function setDate(\DateTimeInterface $date): self
     {
-        $this->Date = $Date;
+        $this->date = $date;
 
         return $this;
     }

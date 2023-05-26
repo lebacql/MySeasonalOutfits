@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\QuizRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,6 +27,14 @@ class Quiz
 
     #[ORM\Column(length: 255)]
     private ?string $image = null;
+
+    #[ORM\OneToMany(mappedBy: 'quiz', targetEntity: Proposal::class)]
+    private Collection $proposals;
+
+    public function __construct()
+    {
+        $this->proposals = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -83,4 +93,35 @@ class Quiz
     {
         return $this->season;
     }
+
+    /**
+     * @return Collection<int, Proposal>
+     */
+    public function getProposals(): Collection
+    {
+        return $this->proposals;
+    }
+
+    public function addProposal(Proposal $proposal): self
+    {
+        if (!$this->proposals->contains($proposal)) {
+            $this->proposals->add($proposal);
+            $proposal->setQuiz($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProposal(Proposal $proposal): self
+    {
+        if ($this->proposals->removeElement($proposal)) {
+            // set the owning side to null (unless already changed)
+            if ($proposal->getQuiz() === $this) {
+                $proposal->setQuiz(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

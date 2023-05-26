@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class QuizCrudController extends AbstractCrudController
 {
@@ -24,8 +25,8 @@ class QuizCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('season'),
-            TextField::new('title'),
+            TextField::new('season', 'Saison'),
+            TextField::new('title', 'Titre'),
             TextEditorField::new('description'),
             ImageField::new('image')
             ->setBasePath(self::ARTICLES_BASE_PATH)

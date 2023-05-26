@@ -66,12 +66,12 @@ class Outfit
     #[ORM\Column(length: 255)]
     private ?string $accessoriesLink = null;
 
-    #[ORM\ManyToMany(targetEntity: Answer::class, inversedBy: 'outfits')]
-    private Collection $answer;
+    #[ORM\OneToMany(mappedBy: 'outfit', targetEntity: Proposal::class)]
+    private Collection $proposals;
 
     public function __construct()
     {
-        $this->answer = new ArrayCollection();
+        $this->proposals = new ArrayCollection();
     }
 
 
@@ -285,29 +285,39 @@ class Outfit
         return $this;
     }
 
-    /**
-     * @return Collection<int, Answer>
-     */
-    public function getAnswer(): Collection
+    public function __toString()
     {
-        return $this->answer;
+        return $this->title;
     }
 
-    public function addAnswer(Answer $answer): self
+    /**
+     * @return Collection<int, Proposal>
+     */
+    public function getProposals(): Collection
     {
-        if (!$this->answer->contains($answer)) {
-            $this->answer->add($answer);
+        return $this->proposals;
+    }
+
+    public function addProposal(Proposal $proposal): self
+    {
+        if (!$this->proposals->contains($proposal)) {
+            $this->proposals->add($proposal);
+            $proposal->setOutfit($this);
         }
 
         return $this;
     }
 
-    public function removeAnswer(Answer $answer): self
+    public function removeProposal(Proposal $proposal): self
     {
-        $this->answer->removeElement($answer);
+        if ($this->proposals->removeElement($proposal)) {
+            // set the owning side to null (unless already changed)
+            if ($proposal->getOutfit() === $this) {
+                $proposal->setOutfit(null);
+            }
+        }
 
         return $this;
     }
-
 
 }
