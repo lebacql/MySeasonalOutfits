@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use App\Entity\Article;
+use App\Entity\Category;
 use App\Entity\Outfit;
 use App\Entity\Question;
 use App\Entity\Quiz;
@@ -55,6 +56,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::subMenu('Actions', 'fa fa-pickaxe')->setSubItems([
             MenuItem::linkToCrud('Ajouter Article', 'fa fa-plus', Article::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Articles', 'fa fa-eye', Article::class)
+        ]);
+        yield MenuItem::subMenu('Catégories', 'fa fa-pickaxe')->setSubItems([
+            MenuItem::linkToCrud('Ajouter Catégorie', 'fa fa-plus', Category::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Catégories', 'fa fa-eye', Category::class)
         ]);
 
         yield MenuItem::section('Quiz', 'fa fa-pen');

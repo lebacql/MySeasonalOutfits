@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Quiz;
 
-class APIQuizController extends AbstractController
+class ApiQuizController extends AbstractController
 {
     
     #[Route('/api/quiz', name: 'api_quiz', methods: ['GET'])]
