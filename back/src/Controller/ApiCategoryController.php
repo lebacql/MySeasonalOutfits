@@ -11,7 +11,7 @@ use App\Entity\Category;
 class ApiCategoryController extends AbstractController
 {
     
-    #[Route('/api/category', name: 'api_category', methods: ['GET'])]
+    #[Route('/api/categories', name: 'api_categories', methods: ['GET'])]
     public function showCategory(ManagerRegistry $doctrine): JsonResponse 
     {
         $repository = $doctrine->getRepository(Category::class);   

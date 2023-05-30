@@ -33,10 +33,10 @@ class Article
     #[Groups(["category"])]
     private Collection $categories;
 
-    public function __construct()
-    {
-        $this->categories = new ArrayCollection();
-    }
+    // public function __construct()
+    // {
+    //     $this->categories = new ArrayCollection();
+    // }
 
     public function getId(): ?int
     {
@@ -99,21 +99,21 @@ class Article
         return $this->categories;
     }
 
-    public function addCategory(Category $category): self
-    {
-        if (!$this->categories->contains($category)) {
-            $this->categories->add($category);
-        }
+    // public function addCategory(Category $category): self
+    // {
+    //     if (!$this->categories->contains($category)) {
+    //         $this->categories->add($category);
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function removeCategory(Category $category): self
-    {
-        $this->categories->removeElement($category);
+    // public function removeCategory(Category $category): self
+    // {
+    //     $this->categories->removeElement($category);
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
   
 }
